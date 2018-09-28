@@ -1,10 +1,13 @@
+var express = require('express');
+var apiRoutes = express.Router();
+var friends = require('../data/friends');
 //Returns all potential friends
-
-app.get("/api/friends", function(req, res){
+apiRoutes.get("/api/friends", function(req, res){
+    console.log('test');
     return res.json(friends);
 });
 
-app.post("/api/friends", function(req, res){
+apiRoutes.post("/api/friends", function(req, res){
     var newFriend = req.body;
 
     console.log(newFriend);
@@ -13,3 +16,5 @@ app.post("/api/friends", function(req, res){
 
     res.json(newFriend)
 })
+
+module.exports = apiRoutes;
