@@ -1,6 +1,7 @@
 var express = require('express');
 var apiRoutes = express.Router();
 var friends = require('../data/friends');
+
 //Returns all potential friends
 apiRoutes.get("/api/friends", function(req, res){
     console.log('test');

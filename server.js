@@ -5,8 +5,6 @@ var path = require("path");
 
 //Internal Dependencies
 var friends = require('./app/data/friends');
-var apiRoutes = require('./app/routing/apiRoutes');
-var htmlRoutes = require('./app/routing/htmlRoutes');
 
 //Set up Express
 var app = express();
@@ -16,6 +14,7 @@ var PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 app.use(require('./app/routing/apiRoutes'));
+app.use(require('./app/routing/htmlRoutes'));
 
 //Use bodyParser for data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
