@@ -1,6 +1,11 @@
 var express = require('express');
 var apiRoutes = express.Router();
 var friends = require('../data/friends');
+var bodyParser = require("body-parser");
+
+//Use bodyParser for data parsing
+apiRoutes.use(bodyParser.urlencoded({ extended: true }));
+apiRoutes.use(bodyParser.json());
 
 //Returns all potential friends
 apiRoutes.get("/api/friends", function(req, res){
