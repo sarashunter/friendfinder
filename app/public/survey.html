@@ -19,8 +19,7 @@
 
 <body>
     <div class="container">
-        Answer questions.
-
+        <div id='survey'>
         <form method="POST" role="form">
             <div class="form-group">
                 <label for="name">Name (Required)</label>
@@ -31,16 +30,19 @@
                 <label for="imgsrc">Link to Photo Image (Required)</label>
                 <input type="text" class="form-control" id="imgsrc">
 
-            <div id='testq'></div>
+                <div id='questionsarea'></div>
 
         </form>
         <button type="submit" class="btn btn-primary" id="submit-btn">Find your friend.</button>
     </div>
+        <a href='/api/friends/'><button type="button" class="btn btn-secondary">API</button></a>
+        <a href='https://github.com/sarashunter/friendfinder'><button type="button" class="btn btn-secondary">GitHub</button></a>
+        <a href='/'><button type="button" class="btn btn-secondary">Home</button></a>
     </div>
 
     <script type="text/javascript">
         var questions = [
-        'Your mind is always buzzing with unexplored ideas and plans.', 'Generally speaking, you rely more on your experience than your imagination.', 'You find it easy to stay relaxed and focused even when there is some pressure.', 'You rarely do something just out of sheer curiosity.', 'People can rarely upset you.', 'It is often difficult for you to relate to other people’s feelings.', 'In a discussion, truth should be more important than people’s sensitivities.', 'You rarely get carried away by fantasies and ideas.', 'You think that everyone’s views should be respected regardless of whether they are supported by facts or not.', 'You feel more energetic after spending time with a group of people.'
+            'Your mind is always buzzing with unexplored ideas and plans.', 'Generally speaking, you rely more on your experience than your imagination.', 'You find it easy to stay relaxed and focused even when there is some pressure.', 'You rarely do something just out of sheer curiosity.', 'People can rarely upset you.', 'It is often difficult for you to relate to other people’s feelings.', 'In a discussion, truth should be more important than people’s sensitivities.', 'You rarely get carried away by fantasies and ideas.', 'You think that everyone’s views should be respected regardless of whether they are supported by facts or not.', 'You feel more energetic after spending time with a group of people.'
         ];
 
         console.log('huh' + questions[0]);
@@ -52,7 +54,7 @@
 
             var scores = [];
 
-            for (var i=0; i<questions.length; i++){
+            for (var i = 0; i < questions.length; i++) {
                 scores.push($("input[name='" + i + "']:checked").val());
             }
 
@@ -75,7 +77,6 @@
             fieldset.addClass("form-group");
 
             var legend = $("<legend>");
-            console.log(questions[n]);
             legend.text(questions[n]);
 
             var answersDiv = $("<div>");
@@ -107,7 +108,6 @@
                         break;
                 }
 
-                console.log('in here');
                 var formCheckDiv = $("<div>");
                 formCheckDiv.addClass("form-check");
 
@@ -129,7 +129,7 @@
 
             fieldset.append(legend);
             fieldset.append(answersDiv);
-            $("#testq").append(fieldset);
+            $("#questionsarea").append(fieldset);
         }
 
     </script>
