@@ -72,7 +72,7 @@
 
         console.log('huh' + questions[0]);
 
-        $("#submit-btn").on("click", function (event) {
+        $("#submit-btn").on("click", event => {
             event.preventDefault();
 
             console.log($("#name").val().trim());
@@ -90,7 +90,7 @@
                 scores: scores
             }
 
-            $.post("/api/friends", newFriend).then(function (data) {
+            $.post("/api/friends", newFriend).then(data => {
                 console.log("New friend added");
                 console.log(data);
                 findFriend(data);
@@ -158,10 +158,10 @@
             $("#questionsarea").append(fieldset);
         }
 
-function findFriend(user){
+const findFriend = user => {
     console.log('in find friend');
 
-    $.get("/api/friends", function(data){
+    $.get("/api/friends", data => {
         console.log("getting in find friend");
         let closestFriend = data[0];
         let bestDifference = 51;
