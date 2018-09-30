@@ -1,15 +1,15 @@
 //External Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 //Internal Dependencies
-var friends = require('./app/data/friends');
+const friends = require('./app/data/friends');
 
 
 //Set up Express
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 
 // app.use(express.static('public'));

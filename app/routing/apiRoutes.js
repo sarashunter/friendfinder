@@ -1,7 +1,7 @@
-var express = require('express');
-var apiRoutes = express.Router();
-var friends = require('../data/friends');
-var bodyParser = require("body-parser");
+const express = require('express');
+const apiRoutes = express.Router();
+const friends = require('../data/friends');
+const bodyParser = require("body-parser");
 
 //Use bodyParser for data parsing
 apiRoutes.use(bodyParser.urlencoded({ extended: true }));
@@ -14,9 +14,7 @@ apiRoutes.get("/api/friends", function(req, res){
 });
 
 apiRoutes.post("/api/friends", function(req, res){
-    var newFriend = req.body;
-
-    console.log(newFriend);
+    const newFriend = req.body;
 
     friends.push(newFriend);
 

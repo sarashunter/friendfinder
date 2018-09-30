@@ -1,6 +1,6 @@
-var express = require('express');
-var htmlRoutes = express.Router();
-var path = require('path');
+const express = require('express');
+const htmlRoutes = express.Router();
+const path = require('path');
 
 
 htmlRoutes.get("/survey", function (req, res) {
