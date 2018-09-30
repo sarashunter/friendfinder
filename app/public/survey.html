@@ -68,11 +68,13 @@
             $.post("/api/friends", newFriend).then(function (data) {
                 console.log("New friend added");
                 alert("You win");
+                console.log(data);
+                findFriend(data);
             })
         })
 
 
-        for (var n = 0; n < questions.length; n++) {
+        for (var n = 0; n < 2; n++) {
             var fieldset = $("<fieldset>");
             fieldset.addClass("form-group");
 
@@ -131,6 +133,34 @@
             fieldset.append(answersDiv);
             $("#questionsarea").append(fieldset);
         }
+
+function findFriend(user){
+    console.log('in find friend');
+
+    $.get("/api/friends", function(data){
+        console.log("getting in find friend");
+        var closestFriend = data[0];
+        var bestDifference = 51;
+
+        //loop over all potential friends
+        for(var i=0; i<data.length-1; i++){
+            var difference =0;
+
+            //loop over each score
+            for(var n=0; n<user.scores.length; n++){
+                difference += Math.abs(user.scores[n] - data[i].scores[n]);
+            }
+            if (difference < bestDifference){
+                bestDifference=difference;
+                closestFriend = data[i];
+            }
+        }
+
+        console.log('Closest friend is '+ closestFriend.name);
+
+
+    });
+}
 
     </script>
 </body>

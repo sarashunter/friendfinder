@@ -9,7 +9,7 @@ apiRoutes.use(bodyParser.json());
 
 //Returns all potential friends
 apiRoutes.get("/api/friends", function(req, res){
-    console.log('test');
+
     return res.json(friends);
 });
 
