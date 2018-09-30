@@ -31,95 +31,21 @@
                 <label for="imgsrc">Link to Photo Image (Required)</label>
                 <input type="text" class="form-control" id="imgsrc">
 
-                <label for="q1">Question 1</label>
-            </div>
-<!--Question 1-->
-            <fieldset class="form-group">
-                <legend>Your mind is always buzzing with unexplored ideas and plans:</legend>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" value="1">
-                        Strongly disagree.
-                    </label>
-                </div>
+            <div id='testq'></div>
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" value="2">
-                        Moderately disagree.
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" value="3">
-                        Neutral.
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" value="4">
-                        Moderately agree.
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" value="5">
-                        Strongly agree.
-                    </label>
-                </div>
-            </fieldset>
-
-<!--Question 2-->
-
-<fieldset class="form-group">
-    <legend>Generally speaking, you rely more on your experience than your imagination.</legend>
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="q2" value="1">
-            Strongly disagree.
-        </label>
-    </div>
-
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="q2" value="2">
-            Moderately disagree.
-        </label>
-    </div>
-
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="q2" value="3">
-            Neutral.
-        </label>
-    </div>
-
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="q2" value="4">
-            Moderately agree.
-        </label>
-    </div>
-
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="q2" value="5">
-            Strongly agree.
-        </label>
-    </div>
-</fieldset>
-
-
-
-        </div>
         </form>
         <button type="submit" class="btn btn-primary" id="submit-btn">Find your friend.</button>
     </div>
+    </div>
 
     <script type="text/javascript">
+        var questions = [
+            'Red is your favorite color',
+            'Blue is your favorite color'
+        ];
+
+        console.log('huh' + questions[0]);
+
         $("#submit-btn").on("click", function (event) {
             event.preventDefault();
 
@@ -128,8 +54,8 @@
             var newFriend = {
                 name: $("#name").val().trim(),
                 imgsrc: $("#imgsrc").val().trim(),
-                scores: [$("input[name='q1']:checked").val(), 
-                $("input[name='q2']:checked").val()]
+                scores: [$("input[name='0']:checked").val(),
+                $("input[name='1']:checked").val()]
             }
 
             $.post("/api/friends", newFriend).then(function (data) {
@@ -137,6 +63,70 @@
                 alert("You win");
             })
         })
+
+
+        for (var n = 0; n < questions.length; n++) {
+            var fieldset = $("<fieldset>");
+            fieldset.addClass("form-group");
+
+            var legend = $("<legend>");
+            console.log(questions[n]);
+            legend.text(questions[n]);
+
+            var answersDiv = $("<div>");
+
+            for (var i = 1; i <= 5; i++) {
+
+
+                var ansTxt;
+
+                switch (i) {
+                    case 1:
+                        ansTxt = 'Strongly disagree';
+                        break;
+
+                    case 2:
+                        ansTxt = 'Moderately disagree';
+                        break;
+
+                    case 3:
+                        ansTxt = 'Neutral';
+                        break;
+
+                    case 4:
+                        ansTxt = 'Moderately agree';
+                        break;
+
+                    case 5:
+                        ansTxt = 'Strongly agree';
+                        break;
+                }
+
+                console.log('in here');
+                var formCheckDiv = $("<div>");
+                formCheckDiv.addClass("form-check");
+
+                var questionlabel = $("<label>");
+                questionlabel.addClass("form-check-label");
+
+                var answerInput = $("<input type='radio' class='form-check-input'>");
+
+                answerInput.attr('name', n);
+                answerInput.val(i);
+
+                questionlabel.append(answerInput);
+                questionlabel.append(ansTxt);
+
+                formCheckDiv.append(questionlabel);
+
+                answersDiv.append(formCheckDiv);
+            }
+
+            fieldset.append(legend);
+            fieldset.append(answersDiv);
+            $("#testq").append(fieldset);
+        }
+
     </script>
 </body>
 
