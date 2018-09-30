@@ -1,7 +1,7 @@
 var friends = [
     {
         'name': 'John Smith',
-        'imgsrc': 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg',
+        'imgsrc': 'https://www.catster.com/wp-content/uploads/2018/07/Savannah-cat-long-body-shot.jpg',
         'scores': [
             5,
             1,
@@ -17,7 +17,7 @@ var friends = [
     },
     {
         'name': 'Jane Doe',
-        'imgsrc': 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg',
+        'imgsrc': 'https://www.catster.com/wp-content/uploads/2018/07/Savannah-cat-long-body-shot.jpg',
         'scores': [
             1,
             1,
@@ -33,7 +33,7 @@ var friends = [
     },
     {
         'name': 'Happy Jane',
-        'imgsrc': 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg',
+        'imgsrc': 'https://www.catster.com/wp-content/uploads/2018/07/Savannah-cat-long-body-shot.jpg',
         'scores': [
             5,
             5,

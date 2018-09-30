@@ -19,6 +19,29 @@
 
 <body>
     <div class="container">
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Your Friend</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1 id='compatibleFriendName'></h1>
+              <img id='compatibleFriendImg' width="50%">
+            </div>
+            <div class="modal-footer">
+              <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
         <div id='survey'>
         <form method="POST" role="form">
             <div class="form-group">
@@ -33,7 +56,7 @@
                 <div id='questionsarea'></div>
 
         </form>
-        <button type="submit" class="btn btn-primary" id="submit-btn">Find your friend.</button>
+        <button type="submit" class="btn btn-primary" id="submit-btn" data-toggle="modal" data-target="#exampleModalCenter">Find your friend.</button>
     </div>
         <a href='/api/friends/'><button type="button" class="btn btn-secondary">API</button></a>
         <a href='https://github.com/sarashunter/friendfinder'><button type="button" class="btn btn-secondary">GitHub</button></a>
@@ -67,7 +90,6 @@
 
             $.post("/api/friends", newFriend).then(function (data) {
                 console.log("New friend added");
-                alert("You win");
                 console.log(data);
                 findFriend(data);
             })
@@ -157,10 +179,13 @@ function findFriend(user){
         }
 
         console.log('Closest friend is '+ closestFriend.name);
-
+        $("#compatibleFriendName").text(closestFriend.name);
+        $("#compatibleFriendImg").attr('src', closestFriend.imgsrc);
 
     });
 }
+
+
 
     </script>
 </body>
