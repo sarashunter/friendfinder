@@ -183,13 +183,13 @@
         const findFriend = user => {
 
             $.get("/api/friends", data => {
-                console.log("getting in find friend");
+
+                //initiate closestFriend as the friend at index 0.  Maximize bestDifference.
                 let closestFriend = data[0];
                 let bestDifference = 51;
 
                 //loop over all potential friends
                 data.forEach(element => {
-                    console.log('comparing with ' + element.name);
 
                     if (element.name === user.name) {
                         console.log('Closest friend is ' + closestFriend.name);
@@ -201,25 +201,21 @@
 
                         //loop over each score
                         user.scores.forEach((score, scoreIndex) => {
-                            
-
-                        // for (let n = 0; n < user.scores.length; n++) {
                             difference += Math.abs(element.scores[scoreIndex] - score);
-                        // }
-                    })
+
+                        })
+
+                        //Check if current friend is more compatible.
                         if (difference < bestDifference) {
                             bestDifference = difference;
                             closestFriend = element;
                         }
-                        
+
                     }
                 })
 
             });
         }
-
-
-
     </script>
 </body>
 
