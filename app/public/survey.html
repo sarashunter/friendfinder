@@ -96,41 +96,41 @@
 
             //Create an array to hold the values of the answers
             let scores = [];
-            // for (let i = 0; i < questions.length; i++) {
-            //     scores.push($("input[name='" + i + "']:checked").val());
-            // }
 
             questions.forEach((element, index) => {
                 scores.push($("input[name='" + index + "']:checked").val());
-                // console.log(scores)
             });
 
+            //Create new Friend object.
+            const newFriend = {
+                name: $("#name").val().trim(),
+                imgsrc: $("#imgsrc").val().trim(),
+                scores: scores
+            }
 
-        const newFriend = {
-            name: $("#name").val().trim(),
-            imgsrc: $("#imgsrc").val().trim(),
-            scores: scores
-        }
-
-        $.post("/api/friends", newFriend).then(data => {
-            console.log("New friend added");
-            console.log(data);
-            findFriend(data);
+            //Post new friend and call findFriend method to find compatible friend.
+            $.post("/api/friends", newFriend).then(data => {
+                console.log("New friend added");
+                console.log(data);
+                findFriend(data);
+            })
         })
-        })
 
+//Generate questions
 
-        for (let n = 0; n < questions.length; n++) {
+        questions.forEach((element, index) => {
+
             let fieldset = $("<fieldset>");
             fieldset.addClass("form-group");
 
             let legend = $("<legend>");
-            legend.text(questions[n]);
+            legend.text(element);
 
             let answersDiv = $("<div>");
+            console.log('did question part');
 
+            //Generate answers for each question.
             for (let i = 1; i <= 5; i++) {
-
 
                 let ansTxt;
 
@@ -164,7 +164,7 @@
 
                 let answerInput = $("<input type='radio' class='form-check-input'>");
 
-                answerInput.attr('name', n);
+                answerInput.attr('name', index);
                 answerInput.val(i);
 
                 questionlabel.append(answerInput);
@@ -178,7 +178,7 @@
             fieldset.append(legend);
             fieldset.append(answersDiv);
             $("#questionsarea").append(fieldset);
-        }
+        })
 
         const findFriend = user => {
             console.log('in find friend');
