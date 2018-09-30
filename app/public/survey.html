@@ -14,6 +14,8 @@
         crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
+
     <title>Survey</title>
 </head>
 
@@ -96,7 +98,7 @@
         })
 
 
-        for (var n = 0; n < 2; n++) {
+        for (var n = 0; n < questions.length; n++) {
             var fieldset = $("<fieldset>");
             fieldset.addClass("form-group");
 
