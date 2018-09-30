@@ -47,6 +47,22 @@ var friends = [
             5
         ]
     },
+    {
+        'name': 'Oreo',
+        'imgsrc': 'https://www.felineliving.net/wp-content/uploads/2018/03/creative-black-kitty-names-300x200.jpg',
+        'scores': [
+            3,
+            5,
+            3,
+            5,
+            3,
+            5,
+            3,
+            5,
+            3,
+            5
+        ]
+    },
 ]
 
 module.exports = friends;

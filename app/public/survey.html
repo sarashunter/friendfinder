@@ -116,7 +116,7 @@
             })
         })
 
-//Generate questions
+        //Generate questions
 
         questions.forEach((element, index) => {
 
@@ -181,7 +181,6 @@
         })
 
         const findFriend = user => {
-            console.log('in find friend');
 
             $.get("/api/friends", data => {
                 console.log("getting in find friend");
@@ -189,22 +188,32 @@
                 let bestDifference = 51;
 
                 //loop over all potential friends
-                for (let i = 0; i < data.length - 1; i++) {
-                    var difference = 0;
+                data.forEach(element => {
+                    console.log('comparing with ' + element.name);
 
-                    //loop over each score
-                    for (let n = 0; n < user.scores.length; n++) {
-                        difference += Math.abs(user.scores[n] - data[i].scores[n]);
-                    }
-                    if (difference < bestDifference) {
-                        bestDifference = difference;
-                        closestFriend = data[i];
-                    }
-                }
+                    if (element.name === user.name) {
+                        console.log('Closest friend is ' + closestFriend.name);
+                        $("#compatibleFriendName").text(closestFriend.name);
+                        $("#compatibleFriendImg").attr('src', closestFriend.imgsrc);
+                    } else {
 
-                console.log('Closest friend is ' + closestFriend.name);
-                $("#compatibleFriendName").text(closestFriend.name);
-                $("#compatibleFriendImg").attr('src', closestFriend.imgsrc);
+                        let difference = 0;
+
+                        //loop over each score
+                        user.scores.forEach((score, scoreIndex) => {
+                            
+
+                        // for (let n = 0; n < user.scores.length; n++) {
+                            difference += Math.abs(element.scores[scoreIndex] - score);
+                        // }
+                    })
+                        if (difference < bestDifference) {
+                            bestDifference = difference;
+                            closestFriend = element;
+                        }
+                        
+                    }
+                })
 
             });
         }
