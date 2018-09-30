@@ -66,7 +66,7 @@
     </div>
 
     <script type="text/javascript">
-        var questions = [
+        const questions = [
             'Your mind is always buzzing with unexplored ideas and plans.', 'Generally speaking, you rely more on your experience than your imagination.', 'You find it easy to stay relaxed and focused even when there is some pressure.', 'You rarely do something just out of sheer curiosity.', 'People can rarely upset you.', 'It is often difficult for you to relate to other people’s feelings.', 'In a discussion, truth should be more important than people’s sensitivities.', 'You rarely get carried away by fantasies and ideas.', 'You think that everyone’s views should be respected regardless of whether they are supported by facts or not.', 'You feel more energetic after spending time with a group of people.'
         ];
 
@@ -77,14 +77,14 @@
 
             console.log($("#name").val().trim());
 
-            var scores = [];
+            let scores = [];
 
-            for (var i = 0; i < questions.length; i++) {
+            for (let i = 0; i < questions.length; i++) {
                 scores.push($("input[name='" + i + "']:checked").val());
             }
 
 
-            var newFriend = {
+            const newFriend = {
                 name: $("#name").val().trim(),
                 imgsrc: $("#imgsrc").val().trim(),
                 scores: scores
@@ -98,19 +98,19 @@
         })
 
 
-        for (var n = 0; n < questions.length; n++) {
-            var fieldset = $("<fieldset>");
+        for (let n = 0; n < questions.length; n++) {
+            let fieldset = $("<fieldset>");
             fieldset.addClass("form-group");
 
-            var legend = $("<legend>");
+            let legend = $("<legend>");
             legend.text(questions[n]);
 
-            var answersDiv = $("<div>");
+            let answersDiv = $("<div>");
 
-            for (var i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 5; i++) {
 
 
-                var ansTxt;
+                let ansTxt;
 
                 switch (i) {
                     case 1:
@@ -134,13 +134,13 @@
                         break;
                 }
 
-                var formCheckDiv = $("<div>");
+                let formCheckDiv = $("<div>");
                 formCheckDiv.addClass("form-check");
 
-                var questionlabel = $("<label>");
+                let questionlabel = $("<label>");
                 questionlabel.addClass("form-check-label");
 
-                var answerInput = $("<input type='radio' class='form-check-input'>");
+                let answerInput = $("<input type='radio' class='form-check-input'>");
 
                 answerInput.attr('name', n);
                 answerInput.val(i);
@@ -163,15 +163,15 @@ function findFriend(user){
 
     $.get("/api/friends", function(data){
         console.log("getting in find friend");
-        var closestFriend = data[0];
-        var bestDifference = 51;
+        let closestFriend = data[0];
+        let bestDifference = 51;
 
         //loop over all potential friends
-        for(var i=0; i<data.length-1; i++){
+        for(let i=0; i<data.length-1; i++){
             var difference =0;
 
             //loop over each score
-            for(var n=0; n<user.scores.length; n++){
+            for(let n=0; n<user.scores.length; n++){
                 difference += Math.abs(user.scores[n] - data[i].scores[n]);
             }
             if (difference < bestDifference){
